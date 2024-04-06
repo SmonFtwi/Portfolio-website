@@ -7,10 +7,10 @@ export default function Home() {
   
 
   return (
-    <main >
-      <div>
+    <main className={` flex min-h-screen flex-col  `}>
+     
        <Mainpage/>
-      </div>
+      
     </main>
   );
 }

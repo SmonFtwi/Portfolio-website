@@ -19,7 +19,7 @@ const Header = () => {
   }
 
   return (
-    <div className="md:text-lg font-serif flex shadow-sm p-4 dark:text-white light:text-gray-700 align-middle justify-center gap-5 relative container">
+    <div className="md:text-lg font-serif flex shadow-sm p-4 dark:text-white light:text-gray-700 align-middle md:justify-center justify-between gap-5 relative container">
       <h1 className="md:flex-initial md:w-1/3 font-bold cursor-pointer">Smon Ftwi Kidane</h1>
       {/* Toggle button for nav list on small screens */}
       <div onClick={() => setShowNav(!showNav)} className="cursor-pointer md:hidden absolute right-5">
