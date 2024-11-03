@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Link from "next/link";
 //import { IconCloudDemo } from "./iconCloud";
 
@@ -27,14 +27,11 @@ export default function HeroSection() {
           
           {/* Social Icons */}
           <div className="flex space-x-4 animate-fadeIn">
-            <Link href="https://github.com/yourusername" target="_blank">
+            <Link href="https://github.com/SmonFtwi" target="_blank">
               <FaGithub size={28} className="hover:text-gray-300 transition-colors duration-200" />
             </Link>
-            <Link href="https://linkedin.com/in/yourusername" target="_blank">
+            <Link href="https://www.linkedin.com/in/smon-ftwi-59b44720a/" target="_blank">
               <FaLinkedin size={28} className="hover:text-gray-300 transition-colors duration-200" />
-            </Link>
-            <Link href="https://instagram.com/yourusername" target="_blank">
-              <FaInstagram size={28} className="hover:text-gray-300 transition-colors duration-200" />
             </Link>
           </div>
         </div>

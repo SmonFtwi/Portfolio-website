@@ -1,5 +1,6 @@
 import ContactSection from "@/components/contact";
 import ExperienceSection from "@/components/experiences";
+
 import HeroSection from "@/components/hero";
 import ProjectsSection from "@/components/project";
 import SkillsSection from "@/components/skills";
@@ -13,6 +14,7 @@ export default function Home() {
        <SkillsSection/>
        <ProjectsSection/>
        <ContactSection/>
+       
     </div>
   );
 }
