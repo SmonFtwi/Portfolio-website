@@ -6,12 +6,12 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section id="home" className=" flex flex-col md:flex-row items-center justify-center   text-center  w-full ">
+    <section id="home" className=" flex flex-col md:flex-row items-center justify-center   text-center  w-full mt-20 ">
       {/* Background Overlay */}
       
       
       {/* Hero Content */}
-      <div className="  flex flex-col md:flex-row items-center justify-center md:justify-start gap-10   md:py-0">
+      <div className="  flex flex-col md:flex-row items-center justify-center md:justify-start gap-10    md:py-0">
         {/* Text Section */}
         <div className="text-start md:text-left space-y-5 animate-fadeIn">
           <div className="inline-block rounded-full bg-black text-gray-100  dark:bg-white dark:text-gray-900  px-4 py-2 text-sm font-medium tracking-wide text-opacity-90">
@@ -26,7 +26,7 @@ export default function HeroSection() {
 
           
           {/* Social Icons */}
-          <div className="flex space-x-4 animate-fadeIn">
+          <div className="flex space-x-4 animate-fadeIn justify-center md:justify-start">
             <Link href="https://github.com/SmonFtwi" target="_blank">
               <FaGithub size={28} className="hover:text-gray-300 transition-colors duration-200" />
             </Link>

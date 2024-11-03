@@ -58,16 +58,16 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden mt-3 space-y-2">
-          <Link href="/" className="block hover:text-gray-300">
+          <Link href="#about" className="block hover:text-gray-300">
             About
           </Link>
-          <Link href="/about" className="block hover:text-gray-300">
+          <Link href="#skills" className="block hover:text-gray-300">
             Skills
           </Link>
-          <Link href="/services" className="block hover:text-gray-300">
+          <Link href="#project" className="block hover:text-gray-300">
             Project
           </Link>
-          <Link href="/contact" className="block hover:text-gray-300">
+          <Link href="#contact" className="block hover:text-gray-300">
             Contact
           </Link>
           
