@@ -12,7 +12,7 @@ export default function ExperienceSection() {
     {
       company: "Fujairah Research Center",
       role: "Full Stack Developer",
-      dates: "Sep 2023 - Present",
+      dates: "Mar 2024 - Present",
       description:
         "Developed full-stack applications utilizing Next.js and Tailwind CSS for front-end, Express.js for back-end, and MySQL for database management. Managed deployments on Azure and Vercel.",
     },
