@@ -1,5 +1,6 @@
 import {  FaGithub } from "react-icons/fa";
 import Image from "next/image";
+import { CodeXmlIcon } from "lucide-react";
 
 export default function ProjectsSection() {
   const projects = [
@@ -33,63 +34,80 @@ export default function ProjectsSection() {
     //   websiteLink: "#", // Add actual link if available
       codeLink: "https://github.com/SmonFtwi/TextSummarizer-pegasus-model", // Add GitHub link
     },
+    {
+      name: "SDN Based Network Solution for Enterprise Network",
+      date: "May 2023",
+      description:
+        "A Software-Defined Networking (SDN) solution that automates the configuration of an enterprise network. This project simplifies network management by automatically setting up SD-WAN components and secures communications with IPsec encryption.",
+      tools: [
+        "GNS3",
+        "Vlan Configurations",
+        "OSPF Configurations",
+        "IPSEC Configurations",
+      ],
+      image: "/Picture1.png", // Replace with actual image path
+      codeLink:
+        "https://docs.google.com/document/d/1MaIAKcjev5WY3DqXKLQSInHk1U93NQWu/edit?usp=sharing&ouid=101985642419000102961&rtpof=true&sd=true", // Add GitHub link
+    },
   ];
 
   return (
     <section id="project" className="py-16 px-6">
-      <h2 className="text-3xl font-bold mb-10 text-center">Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-5xl mx-auto">
-        {projects.map((project, index) => (
-          <div key={index} className="rounded-lg shadow-lg border-[0.5px] border-gray-300 dark:border-gray-700 overflow-hidden transition-shadow duration-300">
-            <div className="relative w-full h-[200px]">
-              {/* Project Image with Consistent Size */}
-              <Image
-                src={project.image}
-                alt={project.name}
-                layout="fill"
-                objectFit="cover"
-                className="object-cover"
-              />
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-1">{project.name}</h3>
-              <p className="text-sm mb-4">{project.date}</p>
-              <p className="mb-4 text-sm">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tools.map((tool, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 text-sm border rounded-full"
-                  >
-                    {tool}
-                  </span>
-                ))}
+      <h2 className="text-3xl font-bold mb-12 text-center">My Projects</h2>
+      <div className="max-w-5xl mx-auto">
+        <ul className="space-y-16">
+          {projects.map((project, index) => (
+            <li
+              key={index}
+              className="flex flex-col md:flex-row gap-8 items-start group border-2 border-gray-300 dark:border-gray-700 rounded-lg p-4"
+            >
+              <div className="md:w-2/5 w-full relative rounded-lg overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  width={800}
+                  height={450}
+                  className="object-cover"
+                />
               </div>
-              <div className="flex space-x-4">
-                {/* Website Link */}
-                {/* {project.websiteLink && (
-                  <a
-                    href={project.websiteLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center transition-colors"
-                  >
-                    <FaExternalLinkAlt className="mr-2" /> Website
-                  </a>
-                )} */}
-                {/* GitHub Link */}
-                <a
-                  href={project.codeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center transition-colors"
-                >
-                  <FaGithub className="mr-2" /> Source
-                </a>
+
+              <div className="md:w-3/5 w-full">
+                <p className="text-sm text-gray-500 mb-2">{project.date}</p>
+                <h3 className="text-2xl font-bold mb-3">{project.name}</h3>
+                <p className="mb-4 text-gray-700 dark:text-gray-300">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tools.map((tool, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1 text-xs font-medium border rounded-full bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex items-center space-x-4">
+                  {project.codeLink && (
+                    <a
+                      href={project.codeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-sm font-medium transition-colors hover:text-blue-500"
+                    >
+                      {project.codeLink.includes("github.com") ? (
+                        <FaGithub className="mr-2 h-5 w-5" />
+                      ) : (
+                        <CodeXmlIcon className="mr-2 h-5 w-5" />
+                      )}
+                      Source Code
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

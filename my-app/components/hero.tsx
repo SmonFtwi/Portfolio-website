@@ -42,7 +42,7 @@ export default function HeroSection() {
            <Image
             alt="Image"
             className=" rounded-full  shadow-lg"
-            src={'/hero.jpg'}
+            src={'/profile1.jpeg'}
             layout="fill"
             priority={true}
           />
