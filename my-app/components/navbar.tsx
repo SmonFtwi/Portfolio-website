@@ -11,8 +11,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className=" fixed top-0 w-full z-50 px-4 py-3 md:px-8 border-b-[0.5px] dark:border-gray-800 border-gray-200 bg-gray-100 dark:bg-black">
-      <div className="flex justify-between items-center">
+    <nav className="fixed top-0 z-50 w-full border-b border-white/20 bg-white/70 px-4 py-3 backdrop-blur-xl transition dark:border-white/10 dark:bg-slate-950/70 md:px-8">
+      <div className="flex items-center justify-between">
         {/* Logo */}
         <Link href="#home" className="text-2xl font-bold">
           Smon Kidane

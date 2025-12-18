@@ -1,40 +1,54 @@
-import { FaReact, FaNodeJs,  FaPython, FaDocker } from "react-icons/fa";
-import { SiTailwindcss, SiMysql, SiNextdotjs, SiExpress, SiAzuredevops, SiGit, SiJavascript, SiTypescript, SiMongodb } from "react-icons/si";
+const skillGroups = [
+  {
+    title: "Languages",
+    items: ["JavaScript", "TypeScript", "Python"],
+  },
+  {
+    title: "Frameworks & Libraries",
+    items: ["React", "Next.js", "Node.js", "Express.js", "Tailwind CSS"],
+  },
+  {
+    title: "Tools & Platforms",
+    items: ["Azure", "Docker", "Git", "MongoDB", "MySQL"],
+  },
+];
 
 export default function SkillsSection() {
-  const skills = [
-    { name: "JavaScript", icon: <SiJavascript size={32} /> },
-    { name: "TypeScript", icon: <SiTypescript size={32} /> },
-    { name: "React", icon: <FaReact size={32} /> },
-    { name: "Next.js", icon: <SiNextdotjs size={32} /> },
-    { name: "Node.js", icon: <FaNodeJs size={32} /> },
-    { name: "Express.js", icon: <SiExpress size={32} /> },
-    { name: "Tailwind CSS", icon: <SiTailwindcss size={32} /> },
-    { name: "MySQL", icon: <SiMysql size={32} /> },
-    { name: "MongoDB", icon: <SiMongodb size={32} /> },
-    { name: "Azure", icon: <SiAzuredevops size={32} /> },
-    { name: "Docker", icon: <FaDocker size={32} /> },
-    { name: "Python", icon: <FaPython size={32} /> },
-    { name: "Git", icon: <SiGit size={32} /> },
-  ];
-
   return (
-    <section id="skills" className=" flex flex-col  items-center  text-start my-10 mx-auto ">
-      <h2 className="text-3xl font-bold mb-10 text-start">Skills</h2>
-      <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-6 gap-6  ">
-        {skills.map((skill, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center   rounded-lg  transition-transform transform hover:scale-105  group"
-          >
-            <div className=" transition-colors">
-              {skill.icon}
+    <section id="skills" className="w-full py-16 animate-fadeIn">
+      <div className="mx-auto max-w-6xl rounded-[32px] border border-slate-200/70 bg-gradient-to-br from-white via-slate-50 to-slate-100 p-10 shadow-sm dark:border-white/10 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950">
+        <div className="flex flex-col gap-3 text-start">
+          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-300">Skills</p>
+          <h2 className="text-3xl font-semibold text-slate-900 dark:text-white">Ways I deliver value.</h2>
+          <p className="text-base text-slate-600 dark:text-slate-300">
+            A blend of languages, frameworks, and delivery tooling that keeps experiments moving quickly without losing
+            rigor.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-8 md:grid-cols-3">
+          {skillGroups.map((group) => (
+            <div
+              key={group.title}
+              className="relative rounded-3xl border border-white/70 bg-white/80 p-6 shadow-[0_15px_45px_-35px_rgba(15,23,42,1)] dark:border-white/10 dark:bg-white/5"
+            >
+              <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-purple-500/5 to-blue-500/5 blur-3xl" />
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-purple-600 dark:text-purple-300">
+                {group.title}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-purple-200/70 bg-white/90 px-3 py-1 text-sm font-medium text-slate-700 shadow-sm dark:border-white/10 dark:bg-slate-900/30 dark:text-white"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
-            <span className="text-lg font-semibold  transition-colors">
-              {skill.name}
-            </span>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

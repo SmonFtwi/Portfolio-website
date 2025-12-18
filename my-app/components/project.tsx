@@ -1,113 +1,91 @@
-import {  FaGithub } from "react-icons/fa";
 import Image from "next/image";
-import { CodeXmlIcon } from "lucide-react";
+
+const projects = [
+  {
+    name: "Smart ATS System",
+    date: "Jan 2024",
+    description:
+      "AI-driven resume analyzer comparing candidate profiles with job descriptions, returning match scores and tailored feedback.",
+    tools: "Streamlit · Gemini · PyPDF2",
+    link: "https://github.com/SmonFtwi/Resume-ATSS-system",
+    image: "/ats.png",
+  },
+  {
+    name: "Movie Exploring App",
+    date: "Nov 2023",
+    description: "Interface for exploring the MNDB catalog by genre and popularity with curated watchlists.",
+    tools: "React · Tailwind CSS · Vite",
+    link: "https://github.com/SmonFtwi/movie-app",
+    image: "/movieApp.png",
+  },
+  {
+    name: "AI Text Summarizer",
+    date: "Dec 2023",
+    description: "Pegasus-based summarizer trained on Samsung chat data to produce concise conversation recaps.",
+    tools: "PyTorch · Streamlit · Transformers",
+    link: "https://github.com/SmonFtwi/TextSummarizer-pegasus-model",
+    image: "/chatsum.png",
+  },
+  {
+    name: "SDN-Based Network Automation",
+    date: "May 2023",
+    description:
+      "Automated SD-WAN provisioning with VLAN, OSPF, and IPsec configurations for enterprise rollouts.",
+    tools: "GNS3 · SD-WAN · IPSec",
+    link:
+      "https://docs.google.com/document/d/1MaIAKcjev5WY3DqXKLQSInHk1U93NQWu/edit?usp=sharing&ouid=101985642419000102961&rtpof=true&sd=true",
+    image: "/Picture1.png",
+  },
+];
 
 export default function ProjectsSection() {
-  const projects = [
-    {
-      name: "Smart ATS System",
-      date: "Jan 2024",
-      description:
-        "An AI-driven resume analyzer that compares resumes with job descriptions to provide a matching score and tailored recommendations.",
-      tools: ["Streamlit", "Gemini", "PyPDF2"],
-      image: "/ats.png", // Replace with actual image path
-    //   websiteLink: "#", // Add actual link if available
-      codeLink: "https://github.com/SmonFtwi/Resume-ATSS-system ", // Add GitHub link
-    },
-    {
-      name: "Movie Exploring App",
-      date: "Nov 2023",
-      description:
-        "An application for exploring movies across various categories from the MNDB database. Discover movies by genre, popularity, and more.",
-      tools: ["React js", "Tailwins css", "vite"],
-      image: "/movieApp.png", // Replace with actual image path
-    //   websiteLink: "#", // Add actual link if available
-      codeLink: "https://github.com/SmonFtwi/movie-app", // Add GitHub link
-    },
-    {
-      name: "AI Text Summarizer",
-      date: "Dec 2023",
-      description:
-        "A dialogue summarizer fine-tuned with a Pegasus model using Samsung chat data to provide concise summaries of conversations.",
-      tools: ["PyTorch", "Streamlit", "Transformers"],
-      image: "/chatsum.png", // Replace with actual image path
-    //   websiteLink: "#", // Add actual link if available
-      codeLink: "https://github.com/SmonFtwi/TextSummarizer-pegasus-model", // Add GitHub link
-    },
-    {
-      name: "SDN Based Network Solution for Enterprise Network",
-      date: "May 2023",
-      description:
-        "A Software-Defined Networking (SDN) solution that automates the configuration of an enterprise network. This project simplifies network management by automatically setting up SD-WAN components and secures communications with IPsec encryption.",
-      tools: [
-        "GNS3",
-        "Vlan Configurations",
-        "OSPF Configurations",
-        "IPSEC Configurations",
-      ],
-      image: "/Picture1.png", // Replace with actual image path
-      codeLink:
-        "https://docs.google.com/document/d/1MaIAKcjev5WY3DqXKLQSInHk1U93NQWu/edit?usp=sharing&ouid=101985642419000102961&rtpof=true&sd=true", // Add GitHub link
-    },
-  ];
-
   return (
-    <section id="project" className="py-16 px-6">
-      <h2 className="text-3xl font-bold mb-12 text-center">My Projects</h2>
-      <div className="max-w-5xl mx-auto">
-        <ul className="space-y-16">
-          {projects.map((project, index) => (
-            <li
-              key={index}
-              className="flex flex-col md:flex-row gap-8 items-start group border-2 border-gray-300 dark:border-gray-700 rounded-lg p-4"
+    <section id="project" className="w-full py-16 animate-fadeIn">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-300">
+            Selected Work
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold text-slate-900 dark:text-white">
+            Projects that blend research with delivery.
+          </h2>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-2">
+          {projects.map((project) => (
+            <article
+              key={project.name}
+              className="flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/90 shadow-[0_35px_65px_-45px_rgba(15,23,42,1)] transition hover:-translate-y-1.5 hover:border-purple-400/60 dark:border-white/10 dark:bg-white/5"
             >
-              <div className="md:w-2/5 w-full relative rounded-lg overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105">
+              <div className="relative h-56 w-full overflow-hidden">
                 <Image
                   src={project.image}
                   alt={project.name}
-                  width={800}
-                  height={450}
-                  className="object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition duration-700 hover:scale-105"
                 />
-              </div>
-
-              <div className="md:w-3/5 w-full">
-                <p className="text-sm text-gray-500 mb-2">{project.date}</p>
-                <h3 className="text-2xl font-bold mb-3">{project.name}</h3>
-                <p className="mb-4 text-gray-700 dark:text-gray-300">
-                  {project.description}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
+                <p className="absolute left-4 top-4 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900">
+                  {project.date}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tools.map((tool, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 text-xs font-medium border rounded-full bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
-                    >
-                      {tool}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex items-center space-x-4">
-                  {project.codeLink && (
-                    <a
-                      href={project.codeLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-sm font-medium transition-colors hover:text-blue-500"
-                    >
-                      {project.codeLink.includes("github.com") ? (
-                        <FaGithub className="mr-2 h-5 w-5" />
-                      ) : (
-                        <CodeXmlIcon className="mr-2 h-5 w-5" />
-                      )}
-                      Source Code
-                    </a>
-                  )}
-                </div>
               </div>
-            </li>
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{project.name}</h3>
+                <p className="mt-3 flex-1 text-base text-slate-600 dark:text-slate-200">{project.description}</p>
+                <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">{project.tools}</p>
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex w-fit items-center gap-2 text-sm font-semibold text-purple-600 dark:text-purple-300"
+                >
+                  View details →
+                </a>
+              </div>
+            </article>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
