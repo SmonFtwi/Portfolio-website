@@ -34,13 +34,20 @@ export default function ExperienceSection() {
     <section id="about" className="w-full py-16 animate-fadeIn">
       <div className="mx-auto flex max-w-5xl flex-col gap-10">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-300">Profile</p>
-          <h2 className="mt-3 text-3xl font-semibold text-slate-900 dark:text-white">
-            Engineering dependable systems that remain easy to operate.
-          </h2>
+          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-300">
+            Profile
+          </p>
+
           <p className="mt-4 text-base text-slate-600 dark:text-slate-300">
-            Full-stack engineer with a foundation in networking and AI experimentation. I translate research ideas into
-            production experiences, document as I go, and keep delivery grounded in measurable outcomes.
+            I&apos;m an experienced software engineer specializing in artificial
+            intelligence, large language models (LLMs), vector databases, and
+            Retrieval-Augmented Generation (RAG) systems. My work focuses on
+            designing and implementing scalable, high-performance software that
+            integrates AI into real-world applications. I have hands-on
+            experience with full-stack development, API design, cloud
+            deployment, CI/CD pipelines, and data-driven systems. I am actively
+            exploring advanced opportunities in software engineering, AI
+            integration, and intelligent system design.
           </p>
         </div>
 
@@ -52,11 +59,19 @@ export default function ExperienceSection() {
             {experiences.map((exp) => (
               <div key={exp.company}>
                 <div className="flex flex-wrap items-baseline gap-2">
-                  <p className="text-lg font-semibold text-slate-900 dark:text-white">{exp.company}</p>
-                  <span className="text-sm text-slate-500 dark:text-slate-300">• {exp.role}</span>
+                  <p className="text-lg font-semibold text-slate-900 dark:text-white">
+                    {exp.company}
+                  </p>
+                  <span className="text-sm text-slate-500 dark:text-slate-300">
+                    • {exp.role}
+                  </span>
                 </div>
-                <p className="text-sm text-slate-500 dark:text-slate-400">{exp.dates}</p>
-                <p className="mt-2 text-base text-slate-600 dark:text-slate-200">{exp.description}</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
+                  {exp.dates}
+                </p>
+                <p className="mt-2 text-base text-slate-600 dark:text-slate-200">
+                  {exp.description}
+                </p>
               </div>
             ))}
           </div>

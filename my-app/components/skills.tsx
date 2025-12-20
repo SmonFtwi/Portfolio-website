@@ -1,15 +1,23 @@
 const skillGroups = [
   {
     title: "Languages",
-    items: ["JavaScript", "TypeScript", "Python"],
+    items: ["JavaScript", "TypeScript", "Python", "Java"],
   },
   {
     title: "Frameworks & Libraries",
-    items: ["React", "Next.js", "Node.js", "Express.js", "Tailwind CSS"],
+    items: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "Tailwind CSS",
+      " TensorFlow",
+      "Flask",
+    ],
   },
   {
     title: "Tools & Platforms",
-    items: ["Azure", "Docker", "Git", "MongoDB", "MySQL"],
+    items: ["Azure", "Docker", "Git", "MongoDB", "MySQL", "PostgreSQL"],
   },
 ];
 
@@ -18,12 +26,10 @@ export default function SkillsSection() {
     <section id="skills" className="w-full py-16 animate-fadeIn">
       <div className="mx-auto max-w-6xl rounded-[32px] border border-slate-200/70 bg-gradient-to-br from-white via-slate-50 to-slate-100 p-10 shadow-sm dark:border-white/10 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950">
         <div className="flex flex-col gap-3 text-start">
-          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-300">Skills</p>
-          <h2 className="text-3xl font-semibold text-slate-900 dark:text-white">Ways I deliver value.</h2>
-          <p className="text-base text-slate-600 dark:text-slate-300">
-            A blend of languages, frameworks, and delivery tooling that keeps experiments moving quickly without losing
-            rigor.
+          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-300">
+            Skills
           </p>
+          <h2 className="text-3xl font-semibold text-slate-900 dark:text-white"></h2>
         </div>
 
         <div className="mt-10 grid gap-8 md:grid-cols-3">

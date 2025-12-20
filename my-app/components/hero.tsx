@@ -3,12 +3,6 @@ import Link from "next/link";
 import { ArrowRight, FileText, Send } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const highlights = [
-  { label: "Years of experience", value: "2+" },
-  { label: "Projects delivered", value: "20+" },
-  { label: "Focus areas", value: "AI, Web, Cloud" },
-];
-
 export default function HeroSection() {
   return (
     <section id="home" className="w-full mt-24 animate-fadeIn">
@@ -23,19 +17,10 @@ export default function HeroSection() {
             </h1>
             <p className="mt-3 text-lg text-slate-600 dark:text-slate-300">
               Product-focused engineer building AI-enabled platforms and
-              resilient infrastructure for modern teams.
+              resilient infrastructure for modern applications.
             </p>
           </div>
-          <div className="flex flex-wrap gap-6 text-sm text-slate-600 dark:text-slate-300">
-            {highlights.map((detail) => (
-              <div key={detail.label} className="flex flex-col">
-                <span className="text-2xl font-semibold text-slate-900 dark:text-white">
-                  {detail.value}
-                </span>
-                <span>{detail.label}</span>
-              </div>
-            ))}
-          </div>
+
           <div className="flex flex-wrap gap-4">
             <Link
               href="#project"
@@ -48,7 +33,7 @@ export default function HeroSection() {
               href="#contact"
               className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-800 dark:border-white/40 dark:text-white"
             >
-              Let&apos;s collaborate
+              Let&apos;s connect
               <Send className="h-4 w-4" />
             </Link>
             <Link
