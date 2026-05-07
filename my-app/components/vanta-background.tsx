@@ -1,26 +1,29 @@
 'use client'
-//@typescript-eslint/no-explicit-any
-import React, { useState, useEffect, useRef } from 'react'
+
+import React, { useEffect, useRef } from 'react'
 import Script from 'next/script'
 import { useTheme } from 'next-themes'
 
+interface VantaEffect {
+  destroy: () => void;
+}
+
 export default function VantaBackground() {
-  const [vantaEffect, setVantaEffect] = useState<any>(null)
   const vantaRef = useRef<HTMLDivElement>(null)
+  const vantaEffect = useRef<VantaEffect | null>(null)
   const { resolvedTheme } = useTheme()
 
   useEffect(() => {
     const initVanta = () => {
-      const windowAny = window as any
-      if (windowAny.VANTA && windowAny.THREE && vantaRef.current) {
-        // Destroy existing effect if it exists before creating a new one
-        if (vantaEffect) {
-          vantaEffect.destroy()
+      if (window.VANTA && window.THREE && vantaRef.current) {
+        // Destroy existing effect if it exists
+        if (vantaEffect.current) {
+          vantaEffect.current.destroy()
         }
 
         const isDark = resolvedTheme === 'dark'
         
-        const newEffect = windowAny.VANTA.DOTS({
+        vantaEffect.current = window.VANTA.DOTS({
           el: vantaRef.current,
           mouseControls: true,
           touchControls: true,
@@ -36,19 +39,16 @@ export default function VantaBackground() {
           spacing: 35.00,
           showLines: false
         })
-        
-        setVantaEffect(newEffect)
       }
     }
 
     // Only init if scripts are available
-    const windowAny = window as any
-    if (windowAny.VANTA && windowAny.THREE) {
+    if (window.VANTA && window.THREE) {
       initVanta()
     }
 
     return () => {
-      if (vantaEffect) vantaEffect.destroy()
+      if (vantaEffect.current) vantaEffect.current.destroy()
     }
   }, [resolvedTheme])
 
@@ -62,11 +62,9 @@ export default function VantaBackground() {
         src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js" 
         strategy="lazyOnload"
         onLoad={() => {
-          // Trigger a re-render or initial init
-          const windowAny = window as any
-          if (windowAny.VANTA && windowAny.THREE && vantaRef.current && !vantaEffect) {
+          if (window.VANTA && window.THREE && vantaRef.current && !vantaEffect.current) {
             const isDark = resolvedTheme === 'dark'
-            setVantaEffect(windowAny.VANTA.DOTS({
+            vantaEffect.current = window.VANTA.DOTS({
               el: vantaRef.current,
               mouseControls: true,
               touchControls: true,
@@ -81,7 +79,7 @@ export default function VantaBackground() {
               size: 3.00,
               spacing: 35.00,
               showLines: false
-            }))
+            })
           }
         }}
       />
