@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-
+import VantaBackground from "@/components/vanta-background";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,10 +38,11 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <VantaBackground />
             <Navbar />
-        {children}
-        <Footer/>
-        </ThemeProvider>
+            {children}
+            <Footer/>
+          </ThemeProvider>
       </body>
     </html>
   );

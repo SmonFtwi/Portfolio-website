@@ -1,78 +1,81 @@
 'use client'
-// components/Navbar.js
+
 import { useState } from "react";
 import Link from "next/link";
-
-import { Menu,  X } from 'lucide-react';
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from 'lucide-react';
 import { ModeToggle } from "./theme-mode";
-
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const navLinks = [
+    { name: "About", href: "/#about" },
+    { name: "Skills", href: "/#skills" },
+    { name: "Projects", href: "/#project" },
+    { name: "Contact", href: "/#contact" },
+  ];
+
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-white/20 bg-white/70 px-4 py-3 backdrop-blur-xl transition dark:border-white/10 dark:bg-slate-950/70 md:px-8">
-      <div className="flex items-center justify-between">
+    <nav className="fixed top-0 z-50 w-full px-6 py-6 transition-all duration-300">
+      <div className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/20 bg-white/40 px-6 py-3 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/40">
         {/* Logo */}
-        <Link href="#home" className="text-2xl font-bold">
-          Smon Kidane
+        <Link href="/" className="text-xl font-bold tracking-tighter text-slate-900 dark:text-white">
+          SMON.
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-6 items-center">
-          <Link href="#about" className="dark:hover:text-gray-300 hover:text-gray-600">
-            About
-          </Link>
-          <Link href="#skills" className="dark:hover:text-gray-300 hover:text-gray-600 ">
-            Skills
-          </Link>
-          <Link href="#project" className="dark:hover:text-gray-300 hover:text-gray-600">
-            Project
-          </Link>
-          <Link href="#contact" className="dark:hover:text-gray-300 hover:text-gray-600">
-            Contact
-          </Link>
-          {/* Call to Action Button */}
-          
-        <ModeToggle/>
+        <div className="hidden items-center md:flex space-x-8">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.name} 
+              href={link.href} 
+              className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+            >
+              {link.name}
+            </Link>
+          ))}
+          <div className="h-4 w-px bg-slate-200 dark:bg-white/10" />
+          <ModeToggle />
         </div>
 
-        
-        
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden flex gap-5 items-center">
-        <ModeToggle/>
+        {/* Mobile Menu Toggle */}
+        <div className="flex items-center gap-4 md:hidden">
+          <ModeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="dark:text-gray-200 focus:outline-none text-gray-900"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900"
           >
-            {isOpen ? (
-              <span className="material-icons"><X/></span>
-            ) : (
-              <span className="material-icons"><Menu/></span>
-            )}
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden mt-3 space-y-2">
-          <Link href="#about" className="block hover:text-gray-300">
-            About
-          </Link>
-          <Link href="#skills" className="block hover:text-gray-300">
-            Skills
-          </Link>
-          <Link href="#project" className="block hover:text-gray-300">
-            Project
-          </Link>
-          <Link href="#contact" className="block hover:text-gray-300">
-            Contact
-          </Link>
-          
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute left-6 right-6 mt-4 rounded-3xl border border-white/20 bg-white/95 p-6 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/95 md:hidden"
+          >
+            <div className="flex flex-col space-y-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-medium text-slate-900 dark:text-white"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
+

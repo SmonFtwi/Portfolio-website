@@ -1,63 +1,81 @@
+'use client'
+
+import { motion } from "framer-motion";
+
 const honors = [
   {
     title: "Huawei ICT Global Final",
     award: "1st Prize",
-    date: "May 2023",
-    summary:
-      "Our team won 1st place in the Network Track at the Huawei ICT Competition 2022–2023, a global event with 120,000 students from 2,000+ universities across 74 countries, where 146 teams from 36 countries reached the finals.",
+    date: "2023",
+    summary: "Won 1st place in the Network Track globally among 120,000+ students.",
   },
   {
-    title: "Huawei ICT Regional Final (Middle East)",
+    title: "Huawei ICT Regional Final",
     award: "3rd Prize",
-    date: "Dec 2022",
-    summary:
-      "The ICT competition combines the theory and practice of professional knowledge in seven competencies, including Datacom, WLAN, Security, big data, AI, Cloud, and storage.",
+    date: "2022",
+    summary: "Placed 3rd across the Middle East in Datacom, AI, and Cloud competencies.",
   },
   {
-    title: "Huawei ICT UAE National Final",
-    award: "2nd Prize",
-    date: "Dec 2022",
-    summary:
-      "The ICT competition combines the theory and practice of professional knowledge in seven competencies, including Datacom, WLAN, Security, big data, AI, Cloud, and storage.",
-  },
-  {
-    title: "Higher Colleges of Technology",
-    award: "Full Scholarship Award",
-    date: "Academic Excellence",
-    summary:
-      "Recognized for academic performance and leadership across campus initiatives.",
+    title: "National Scholarship",
+    award: "Excellence Award",
+    date: "2020-2023",
+    summary: "Awarded full scholarship for consistent academic performance and leadership.",
   },
 ];
 
 export default function HonorsSection() {
   return (
-    <section id="honors" className="w-full py-16 animate-fadeIn">
-      <div className="mx-auto flex max-w-5xl flex-col gap-8">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-300">
-            Honors & Awards
+    <section id="honors" className="w-full py-24">
+      <div className="mx-auto max-w-4xl px-6">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-400">
+            Recognition
           </p>
-        </div>
+          <h2 className="mt-2 text-4xl font-bold text-slate-900 dark:text-white">Honors</h2>
+        </motion.div>
 
-        <div className="space-y-6 border-l border-slate-200/70 pl-6 dark:border-white/10">
-          {honors.map((item) => (
-            <div key={item.title} className="relative">
-              <span className="absolute -left-[13px] top-1 flex h-3 w-3 items-center justify-center rounded-full border-2 border-white bg-gradient-to-br from-purple-500 to-blue-500 shadow dark:border-slate-900" />
-              <div className="flex flex-wrap items-baseline gap-2">
-                <p className="text-lg font-semibold text-slate-900 dark:text-white">
-                  {item.title}
-                </p>
-                <span className="text-sm text-purple-600 dark:text-purple-300">
+        <div className="mt-16 flex flex-col gap-4">
+          {honors.map((item, index) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative rounded-2xl border border-slate-100 bg-white px-8 py-6 shadow-sm transition-all hover:bg-slate-50 dark:border-white/5 dark:bg-white/5 dark:hover:bg-white/10"
+            >
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                {/* Date */}
+                <span className="w-20 shrink-0 text-sm font-medium text-slate-400 dark:text-slate-500">
+                  {item.date}
+                </span>
+
+                <div className="h-8 w-px bg-slate-200 dark:bg-white/10 shrink-0" />
+
+                {/* Award badge */}
+                <span className="shrink-0 text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white w-28">
                   {item.award}
                 </span>
+
+                <div className="h-8 w-px bg-slate-200 dark:bg-white/10 shrink-0" />
+
+                {/* Title + Summary */}
+                <div className="flex flex-1 flex-wrap items-baseline gap-x-3 gap-y-1 min-w-0">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white shrink-0">
+                    {item.title}
+                  </h3>
+                  <span className="hidden text-slate-300 dark:text-white/20 sm:inline">—</span>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 min-w-0">
+                    {item.summary}
+                  </p>
+                </div>
               </div>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
-                {item.date}
-              </p>
-              <p className="mt-2 text-base text-slate-600 dark:text-slate-200">
-                {item.summary}
-              </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

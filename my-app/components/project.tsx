@@ -1,104 +1,155 @@
+'use client'
+
+import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { ExternalLink } from "lucide-react";
+import { useRef } from "react";
 
-const projects = [
-  {
-    name: "Study Mate AI",
-    date: "Dec 2025",
-    description:
-      "AI-powered study assistant using Next.js, Express.js, and MongoDB Atlas Vector Search. Implemented RAG to process uploaded documents (PDF, DOCX, TXT) and generate summaries, flashcards, and contextual answers. Integrated Gemini API for semantic embeddings and document parsing to power intelligent retrieval. Designed scalable APIs and an interactive UI for seamless project creation, file uploads, and AI-driven study assistance.",
-    tools: "Next.js · Express.js · MongoDB Atlas Vector Search · Gemini",
-    link: "https://github.com/SmonFtwi/studyMateAI",
-    image: "/studymageDash.png",
-  },
-  {
-    name: "Smart ATS System",
-    date: "Jan 2024",
-    description:
-      "AI-driven resume analyzer comparing candidate profiles with job descriptions, returning match scores and tailored feedback.",
-    tools: "Streamlit · Gemini · PyPDF2",
-    link: "https://github.com/SmonFtwi/Resume-ATSS-system",
-    image: "/ats.png",
-  },
-  {
-    name: "Movie Exploring App",
-    date: "Nov 2023",
-    description:
-      "Interface for exploring the MNDB catalog by genre and popularity with curated watchlists.",
-    tools: "React · Tailwind CSS · Vite",
-    link: "https://github.com/SmonFtwi/movie-app",
-    image: "/movieApp.png",
-  },
-  {
-    name: "AI Text Summarizer",
-    date: "Dec 2023",
-    description:
-      "Pegasus-based summarizer trained on Samsung chat data to produce concise conversation recaps.",
-    tools: "PyTorch · Streamlit · Transformers",
-    link: "https://github.com/SmonFtwi/TextSummarizer-pegasus-model",
-    image: "/chatsum.png",
-  },
-  {
-    name: "SDN-Based Network Automation",
-    date: "May 2023",
-    description:
-      "Automated SD-WAN provisioning with VLAN, OSPF, and IPsec configurations for enterprise rollouts.",
-    tools: "GNS3 · SD-WAN · IPSec",
-    link: "https://docs.google.com/document/d/1MaIAKcjev5WY3DqXKLQSInHk1U93NQWu/edit?usp=sharing&ouid=101985642419000102961&rtpof=true&sd=true",
-    image: "/Picture1.png",
-  },
-];
+import { projects, Project } from "@/lib/projects-data";
+import { ArrowRight } from "lucide-react";
 
-export default function ProjectsSection() {
+function ProjectRow({ project, index }: { project: Project; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isEven = index % 2 === 0;
+
   return (
-    <section id="project" className="w-full py-16 animate-fadeIn">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-300">
-            Projects
-          </p>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 48 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, delay: 0.05, ease: [0.25, 0.1, 0.25, 1] }}
+      className={`group relative flex flex-col gap-8 md:flex-row md:items-center md:gap-16 ${
+        isEven ? "" : "md:flex-row-reverse"
+      }`}
+    >
+      {/* Image */}
+      <div className="relative w-full md:w-[55%] shrink-0">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-slate-100 dark:bg-white/5">
+          <Image
+            src={project.image}
+            alt={project.name}
+            fill
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          />
+          <div className="absolute inset-0 bg-slate-900/0 transition-all duration-500 group-hover:bg-slate-900/50" />
+
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-400 group-hover:opacity-100">
+            <Link
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-slate-900 shadow-xl transition-transform duration-300 hover:scale-105"
+            >
+              View Project <ExternalLink className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div
+            className="pointer-events-none absolute -bottom-6 -right-6 h-32 w-32 rounded-full blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-30"
+            style={{ background: project.accent }}
+          />
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col gap-4 md:flex-1">
+        <div className="flex items-center gap-3">
+          <span
+            className="font-mono text-[11px] font-bold tracking-[0.2em] uppercase"
+            style={{ color: project.accent }}
+          >
+            {project.index}
+          </span>
+          <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
+          <span className="font-mono text-[11px] text-slate-400 dark:text-slate-500 tracking-widest uppercase">
+            {project.date}
+          </span>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {projects.map((project) => (
-            <article
-              key={project.name}
-              className="flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/90 shadow-[0_35px_65px_-45px_rgba(15,23,42,1)] transition hover:-translate-y-1.5 hover:border-purple-400/60 dark:border-white/10 dark:bg-white/5"
+        <h3 className="text-3xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white">
+          {project.name}
+        </h3>
+
+        <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mt-1">
+          {project.tools.map((tool) => (
+            <span
+              key={tool}
+              className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-400"
             >
-              <div className="relative h-56 w-full overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition duration-700 hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
-                <p className="absolute left-4 top-4 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900">
-                  {project.date}
-                </p>
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
-                  {project.name}
-                </h3>
-                <p className="mt-3 flex-1 text-base text-slate-600 dark:text-slate-200">
-                  {project.description}
-                </p>
-                <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
-                  {project.tools}
-                </p>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex w-fit items-center gap-2 text-sm font-semibold text-purple-600 dark:text-purple-300"
-                >
-                  View details →
-                </a>
-              </div>
-            </article>
+              {tool}
+            </span>
           ))}
         </div>
+
+        <Link
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group/link mt-2 inline-flex w-fit items-center gap-2 text-sm font-semibold transition-colors"
+          style={{ color: project.accent }}
+        >
+          <span className="underline underline-offset-4 decoration-dotted group-hover/link:decoration-solid">
+            View Project
+          </span>
+          <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+        </Link>
+      </div>
+    </motion.div>
+  );
+}
+
+export default function ProjectsSection({ limit }: { limit?: number }) {
+  const displayedProjects = limit ? projects.slice(0, limit) : projects;
+
+  return (
+    <section id="project" className="w-full py-24">
+      <div className="mx-auto max-w-6xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-24"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-400">
+            Personal 
+          </p>
+          <h2 className="mt-2 text-4xl font-bold text-slate-900 dark:text-white">Projects</h2>
+        </motion.div>
+
+        <div className="flex flex-col gap-24">
+          {displayedProjects.map((project, i) => (
+            <div key={project.name}>
+              <ProjectRow project={project} index={i} />
+              {(i < displayedProjects.length - 1 || (limit && projects.length > limit)) && (
+                <div className="mt-24 h-px w-full bg-slate-100 dark:bg-white/5" />
+              )}
+            </div>
+          ))}
+        </div>
+
+        {limit && projects.length > limit && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-24 flex justify-center"
+          >
+            <Link
+              href="/projects"
+              className="group flex items-center gap-2 rounded-full border border-slate-200 bg-white px-8 py-4 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+            >
+              View More Projects
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
+        )}
       </div>
     </section>
   );
