@@ -47,29 +47,45 @@ export default function HonorsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative rounded-2xl border border-slate-100 bg-white px-8 py-6 shadow-sm transition-all hover:bg-slate-50 dark:border-white/5 dark:bg-white/5 dark:hover:bg-white/10"
+              className="relative rounded-2xl border border-slate-100 bg-white px-6 py-5 shadow-sm transition-all hover:bg-slate-50 dark:border-white/5 dark:bg-white/5 dark:hover:bg-white/10 sm:px-8 sm:py-6"
             >
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                {/* Date */}
+              {/* Mobile layout */}
+              <div className="flex flex-col gap-2 sm:hidden">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                    {item.award}
+                  </span>
+                  <span className="text-xs font-medium text-slate-400 dark:text-slate-500">
+                    {item.date}
+                  </span>
+                </div>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
+                  {item.summary}
+                </p>
+              </div>
+
+              {/* Desktop layout */}
+              <div className="hidden sm:flex sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-3">
                 <span className="w-20 shrink-0 text-sm font-medium text-slate-400 dark:text-slate-500">
                   {item.date}
                 </span>
 
                 <div className="h-8 w-px bg-slate-200 dark:bg-white/10 shrink-0" />
 
-                {/* Award badge */}
-                <span className="shrink-0 text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white w-28">
+                <span className="w-28 shrink-0 text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
                   {item.award}
                 </span>
 
                 <div className="h-8 w-px bg-slate-200 dark:bg-white/10 shrink-0" />
 
-                {/* Title + Summary */}
                 <div className="flex flex-1 flex-wrap items-baseline gap-x-3 gap-y-1 min-w-0">
                   <h3 className="text-base font-bold text-slate-900 dark:text-white shrink-0">
                     {item.title}
                   </h3>
-                  <span className="hidden text-slate-300 dark:text-white/20 sm:inline">—</span>
+                  <span className="text-slate-300 dark:text-white/20">—</span>
                   <p className="text-sm text-slate-500 dark:text-slate-400 min-w-0">
                     {item.summary}
                   </p>
