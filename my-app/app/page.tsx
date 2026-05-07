@@ -13,8 +13,9 @@ export default function Home() {
     <main className="flex w-full flex-col font-[family-name:var(--font-geist-sans)]">
       <HeroSection />
       <div className="flex flex-col gap-24 pb-32">
+         <ExperienceSection />
         <ProjectsSection limit={3} />
-        <ExperienceSection />
+       
         <SkillsSection />
         <HonorsSection />
         <CertificationsSection />

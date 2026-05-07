@@ -1,5 +1,5 @@
 'use client'
-
+//@typescript-eslint/no-explicit-any
 import React, { useState, useEffect, useRef } from 'react'
 import Script from 'next/script'
 import { useTheme } from 'next-themes'
@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes'
 export default function VantaBackground() {
   const [vantaEffect, setVantaEffect] = useState<any>(null)
   const vantaRef = useRef<HTMLDivElement>(null)
-  const { theme, resolvedTheme } = useTheme()
+  const { resolvedTheme } = useTheme()
 
   useEffect(() => {
     const initVanta = () => {

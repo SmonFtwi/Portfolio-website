@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 
+import Image from "next/image";
+
 const experiences = [
   {
     company: "Fujairah Research Center",
@@ -32,22 +34,39 @@ const experiences = [
 export default function ExperienceSection() {
   return (
     <section id="about" className="w-full py-24">
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-5xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-20 flex flex-col items-center gap-12 md:flex-row md:items-start md:justify-between"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-400">
-            About
-          </p>
-          <h2 className="mt-2 text-4xl font-bold text-slate-900 dark:text-white md:text-5xl">Professional Profile</h2>
-          <p className="mt-8 text-xl leading-relaxed text-slate-600 dark:text-slate-400">
-            Experienced software engineer specializing in AI, Large Language Models (LLMs), vector databases, and RAG systems. 
-            Focused on implementing high-performance software that integrates intelligence into real-world applications across full-stack and cloud environments.
-          </p>
+          <div className="flex-1">
+            <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-400">
+              About
+            </p>
+            <h2 className="mt-2 text-4xl font-bold text-slate-900 dark:text-white md:text-5xl">Professional Profile</h2>
+            <p className="mt-8 text-xl leading-relaxed text-slate-600 dark:text-slate-400">
+              Experienced software engineer specializing in AI, Large Language Models (LLMs), vector databases, and RAG systems. 
+              Focused on implementing high-performance software that integrates intelligence into real-world applications across full-stack and cloud environments.
+            </p>
+          </div>
+
+          <div className="relative flex-shrink-0 group">
+            <div className="relative h-56 w-56 overflow-hidden rounded-full border-4 border-white/20 shadow-2xl dark:border-white/10 md:h-64 md:w-64">
+              <Image
+                src="/profile1.jpeg"
+                alt="Smon"
+                fill
+                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-110 group-hover:scale-100"
+              />
+            </div>
+            {/* Decorative background glow */}
+            <div className="absolute -inset-4 -z-10 bg-gradient-to-tr from-blue-500/20 to-indigo-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            {/* Floating ring */}
+            <div className="absolute -inset-3 -z-10 rounded-full border border-blue-500/20 dark:border-blue-400/10 scale-95 group-hover:scale-105 transition-transform duration-700" />
+          </div>
         </motion.div>
 
         <motion.div
@@ -57,7 +76,7 @@ export default function ExperienceSection() {
           transition={{ duration: 0.6 }}
         >
           <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-400">
-            Journey
+            Professional
           </p>
           <h3 className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">Experience</h3>
         </motion.div>
