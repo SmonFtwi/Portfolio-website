@@ -38,7 +38,6 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <VantaBackground />
             <Navbar />
             {children}
             <Footer/>

@@ -3,10 +3,13 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import VantaBackground from "./vanta-background";
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative flex min-h-[80vh] w-full items-center justify-center overflow-hidden py-20">
+    <section id="home" className="relative flex min-h-screen w-full items-center justify-center overflow-hidden">
+
+      <VantaBackground />
       <div className="container relative z-10 mx-auto px-6">
         <div className="flex flex-col items-center text-center">
           <motion.div

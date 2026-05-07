@@ -32,7 +32,7 @@ export default function VantaBackground() {
     color2: isDark ? 0x202dff : 0x4f46e5,
     backgroundColor: isDark ? 0x131120 : 0xffffff,
     size: 3,
-    spacing: 35,
+    spacing: 30,
     showLines: false,
   })
 
@@ -78,7 +78,7 @@ export default function VantaBackground() {
       />
       <div
         ref={vantaRef}
-        className="fixed inset-0 -z-50 w-full h-full pointer-events-none"
+        className="absolute inset-0 -z-50 w-full h-full pointer-events-none"
       />
     </>
   )

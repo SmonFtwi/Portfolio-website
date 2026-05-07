@@ -1,88 +1,86 @@
 'use client'
 
 import { motion } from "framer-motion";
+import { Code, Layout, Database, Cpu, Cloud } from "lucide-react";
+import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 
-const skillGroups = [
+const timelineData = [
   {
+    id: 1,
     title: "Languages",
-    items: ["Python", "TypeScript", "JavaScript", "Dart", "Java"],
-    color: "from-amber-400 to-orange-500",
-    layout: "horizontal",
+    date: "Core Foundation",
+    content: "Python, TypeScript, JavaScript, Dart, Java",
+    category: "Languages",
+    icon: Code,
+    relatedIds: [2],
+    status: "completed" as const,
+    energy: 100,
   },
   {
-    title: "Frameworks & Libraries",
-    items: ["React", "Next.js", "Node.js", "Express", "Flask", "Flutter", "Tailwind CSS"],
-    color: "from-blue-400 to-indigo-500",
-    layout: "horizontal",
+    id: 2,
+    title: "Frameworks",
+    date: "Web & Mobile",
+    content: "React, Next.js, Node.js, Express, Flask, Flutter, Tailwind CSS",
+    category: "Frameworks",
+    icon: Layout,
+    relatedIds: [1, 3],
+    status: "completed" as const,
+    energy: 95,
   },
   {
+    id: 3,
     title: "Databases",
-    items: ["Firebase", "MongoDB", "PostgreSQL", "MySQL"],
-    color: "from-violet-400 to-pink-500",
-    layout: "horizontal",
+    date: "Data Persistence",
+    content: "Firebase, MongoDB, PostgreSQL, MySQL",
+    category: "Databases",
+    icon: Database,
+    relatedIds: [2, 5],
+    status: "completed" as const,
+    energy: 90,
   },
   {
+    id: 4,
     title: "AI / ML",
-    items: ["TensorFlow", "LangChain", "RAG", "Hugging Face"],
-    color: "from-emerald-400 to-teal-500",
-    layout: "horizontal",
+    date: "Advanced Tech",
+    content: "TensorFlow, LangChain, RAG, Hugging Face",
+    category: "AI / ML",
+    icon: Cpu,
+    relatedIds: [2, 5],
+    status: "in-progress" as const,
+    energy: 85,
   },
   {
-    title: "Cloud & DevOps",
-    items: ["Azure", "AWS","Docker", "Git", "Firebase Hosting"],
-    color: "from-green-400 to-emerald-500",
-    layout: "horizontal",
+    id: 5,
+    title: "Cloud",
+    date: "Infrastructure",
+    content: "Azure, AWS, Docker, Git, Firebase Hosting",
+    category: "Cloud",
+    icon: Cloud,
+    relatedIds: [3, 4],
+    status: "completed" as const,
+    energy: 90,
   },
 ];
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="w-full py-24">
+    <section id="skills" className="w-full py-24 overflow-hidden">
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-8"
         >
-          <h2 className="mt-2 text-4xl font-bold text-slate-900 dark:text-white">Skills</h2>
+          <h2 className="text-4xl font-bold text-slate-900 dark:text-white">Skills</h2>
+          <p className="mt-4 text-slate-600 dark:text-slate-400">
+            Interactive map of my technical expertise and tech stack. Click on nodes to explore.
+          </p>
         </motion.div>
 
-        {/* Bottom horizontal rows */}
-        <div className="flex flex-col gap-6">
-          {skillGroups
-            .filter((g) => g.layout === "horizontal")
-            .map((group, index) => (
-              <motion.div
-                key={group.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white px-8 py-6 transition-all hover:shadow-xl dark:border-white/10 dark:bg-white/5"
-              >
-                <div
-                  className={`absolute top-0 right-0 h-24 w-24 translate-x-12 -translate-y-12 rounded-full bg-gradient-to-br ${group.color} opacity-10 blur-2xl transition-transform group-hover:scale-150`}
-                />
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                  <h3 className="w-36 shrink-0 text-sm font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
-                    {group.title}
-                  </h3>
-                  <div className="h-8 w-px bg-slate-200 dark:bg-white/10 shrink-0" />
-                  <div className="flex flex-wrap gap-3">
-                    {group.items.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-slate-100 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-100 dark:border-white/5 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+        <div >
+          <RadialOrbitalTimeline timelineData={timelineData} />
         </div>
       </div>
     </section>
