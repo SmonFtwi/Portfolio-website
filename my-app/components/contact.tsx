@@ -1,9 +1,8 @@
 'use client'
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { Mail, Linkedin, Github, ArrowUpRight, Copy, Check } from "lucide-react";
-import { useState } from "react";
+import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
 
 const links = [
   {
@@ -12,8 +11,7 @@ const links = [
     label: "Email",
     handle: "smonftwi1@gmail.com",
     cta: "Send a message",
-    accent: "#3b82f6", // Blue
-    copyable: true,
+    accent: "#6ee7b7",
   },
   {
     icon: Linkedin,
@@ -21,7 +19,7 @@ const links = [
     label: "LinkedIn",
     handle: "smon-ftwi",
     cta: "Connect with me",
-    accent: "#0ea5e9", // Sky
+    accent: "#93c5fd",
   },
   {
     icon: Github,
@@ -29,163 +27,116 @@ const links = [
     label: "GitHub",
     handle: "SmonFtwi",
     cta: "See my code",
-    accent: "#6366f1", // Indigo
+    accent: "#c4b5fd",
   },
 ];
 
 export default function ContactSection() {
-  const [copied, setCopied] = useState(false);
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
-    <section id="contact" className="relative w-full py-32 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/5 blur-[120px] dark:bg-blue-900/5" />
-
+    <section id="contact" className="w-full py-32 overflow-hidden">
       <div className="mx-auto max-w-5xl px-6">
+
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-20"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <div className="h-px w-8 bg-blue-500" />
-            <p className="text-sm font-bold uppercase tracking-[0.4em] text-blue-500">
-              Get in Touch
-            </p>
-          </div>
-          <h2 className="text-5xl font-black leading-[1.1] tracking-tight text-slate-950 dark:text-white md:text-8xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-slate-500 dark:text-slate-400">
+            Get in Touch
+          </p>
+          <h2 className="mt-4 text-5xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white md:text-7xl">
             Let&apos;s Build <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-300">Something</span>{" "}
-            <span className="italic font-serif">Extraordinary</span>
+            <span className="relative inline-block">
+              Something
+              <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-slate-200 dark:bg-white/10" />
+            </span>{" "}
+            <span className="italic font-extrabold">Extraordinary</span>
           </h2>
-          <p className="mt-10 max-w-xl text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+          <p className="mt-8 max-w-xl text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
             Open for full-time roles in Dubai, strategic partnerships, and deep-tech collaborations across AI, full-stack, and mobile.
           </p>
         </motion.div>
 
         {/* Contact cards */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-1">
+        <div className="flex flex-col gap-4">
           {links.map((link, i) => (
             <motion.div
               key={link.label}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -32 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+              transition={{ duration: 0.55, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <div className="group relative">
-                <Link
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between gap-6 rounded-3xl border border-slate-200/60 bg-white/50 p-8 transition-all duration-500 hover:border-blue-500/30 hover:bg-white dark:border-white/5 dark:bg-white/5 dark:hover:border-blue-400/30 dark:hover:bg-white/10 backdrop-blur-sm"
-                >
-                  <div className="flex items-center gap-6">
-                    <div
-                      className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-sm"
-                      style={{ background: `${link.accent}15`, border: `1px solid ${link.accent}30` }}
-                    >
-                      <link.icon
-                        className="h-7 w-7 transition-colors duration-500"
-                        style={{ color: link.accent }}
-                      />
-                    </div>
-
-                    <div className="flex flex-col">
-                      <span className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
-                        {link.label}
-                      </span>
-                      <span className="mt-1 text-lg font-bold text-slate-950 dark:text-white">
-                        {link.handle}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <span
-                      className="hidden text-sm font-bold opacity-0 transition-all duration-500 group-hover:opacity-100 md:block translate-x-4 group-hover:translate-x-0"
-                      style={{ color: link.accent }}
-                    >
-                      {link.cta}
-                    </span>
-                    <div
-                      className="flex h-12 w-12 items-center justify-center rounded-full transition-all duration-500 group-hover:bg-blue-500 group-hover:text-white bg-slate-100 dark:bg-white/10"
-                    >
-                      <ArrowUpRight className="h-5 w-5 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </div>
-                  </div>
-                </Link>
-
-                {link.copyable && (
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      copyToClipboard(link.handle);
-                    }}
-                    className="absolute right-24 top-1/2 -translate-y-1/2 hidden lg:flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 opacity-0 transition-all duration-300 hover:bg-blue-500 hover:text-white group-hover:opacity-100 dark:bg-white/10 dark:hover:bg-blue-400 z-20"
-                    title="Copy to clipboard"
+              <Link
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between gap-6 rounded-2xl border border-slate-100 bg-white px-8 py-6 transition-all duration-300 hover:border-slate-300 hover:shadow-lg dark:border-white/5 dark:bg-white/5 dark:hover:border-white/15 dark:hover:bg-white/8"
+              >
+                {/* Left: icon + info */}
+                <div className="flex items-center gap-6">
+                  <div
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: `${link.accent}18`, border: `1px solid ${link.accent}30` }}
                   >
-                    <AnimatePresence mode="wait">
-                      {copied ? (
-                        <motion.div
-                          key="check"
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          exit={{ scale: 0 }}
-                        >
-                          <Check className="h-4 w-4" />
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          key="copy"
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          exit={{ scale: 0 }}
-                        >
-                          <Copy className="h-4 w-4" />
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </button>
-                )}
-              </div>
+                    <link.icon
+                      className="h-5 w-5 transition-colors duration-300"
+                      style={{ color: link.accent }}
+                    />
+                  </div>
+
+                  <div className="flex flex-col">
+                    <span className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                      {link.label}
+                    </span>
+                    <span className="mt-0.5 text-base font-semibold text-slate-900 dark:text-white">
+                      {link.handle}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Right: cta + arrow */}
+                <div className="flex items-center gap-3 shrink-0">
+                  <span
+                    className="hidden text-sm font-medium opacity-0 transition-all duration-300 group-hover:opacity-100 sm:block"
+                    style={{ color: link.accent }}
+                  >
+                    {link.cta}
+                  </span>
+                  <div
+                    className="flex h-9 w-9 items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110"
+                    style={{ background: `${link.accent}18` }}
+                  >
+                    <ArrowUpRight
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      style={{ color: link.accent }}
+                    />
+                  </div>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>
 
-        {/* Footer Area */}
+        {/* Footer line */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="mt-32 flex flex-col items-center justify-between gap-6 border-t border-slate-200/60 pt-12 dark:border-white/10 md:flex-row"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-20 flex items-center justify-between border-t border-slate-100 pt-8 dark:border-white/5"
         >
-          <div className="flex items-center gap-4">
-            <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 tracking-[0.3em] uppercase">
-              Available for new opportunities
-            </span>
-          </div>
-          
-          <div className="flex gap-8">
-            <span className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 tracking-[0.3em] uppercase">
-              Dubai, UAE
-            </span>
-            <span className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 tracking-[0.3em] uppercase">
-              © {new Date().getFullYear()} Smon Kidane
-            </span>
-          </div>
+          <span className="font-mono text-xs text-slate-400 dark:text-slate-600 tracking-widest uppercase">
+            Based in Dubai, UAE
+          </span>
+          <span className="font-mono text-xs text-slate-400 dark:text-slate-600 tracking-widest uppercase">
+            Available for hire
+          </span>
         </motion.div>
+
       </div>
     </section>
   );

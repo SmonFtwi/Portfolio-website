@@ -4,28 +4,18 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
-
+import { useRef } from "react";
 
 import { projects, Project } from "@/lib/projects-data";
 import { ArrowRight } from "lucide-react";
 
 function ProjectRow({ project, index }: { project: Project; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
   const isEven = index % 2 === 0;
-
-  const contentVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.1, 0.25, 1]
-      }
-    }
-  };
 
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 48 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -34,95 +24,82 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
         isEven ? "" : "md:flex-row-reverse"
       }`}
     >
-      {/* Image Container */}
+      {/* Image */}
       <div className="relative w-full md:w-[55%] shrink-0">
-        <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-slate-100 dark:bg-white/5 shadow-2xl transition-all duration-500 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] dark:group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-slate-100 dark:bg-white/5">
           <Image
             src={project.image}
             alt={project.name}
             fill
-            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.1]"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
-          
-          {/* Refined Glass Overlay */}
-          <div className="absolute inset-0 bg-slate-950/0 backdrop-blur-0 transition-all duration-500 group-hover:bg-slate-950/40 group-hover:backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-slate-900/0 transition-all duration-500 group-hover:bg-slate-900/50" />
 
-          {/* Hover Button */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-500 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-400 group-hover:opacity-100">
             <Link
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-full bg-white px-8 py-4 text-sm font-black uppercase tracking-widest text-slate-900 shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95"
+              className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-slate-900 shadow-xl transition-transform duration-300 hover:scale-105"
             >
-              Explore Project <ExternalLink className="h-4 w-4" />
+              View Project <ExternalLink className="h-4 w-4" />
             </Link>
           </div>
 
-          {/* Accent Glow */}
           <div
-            className="pointer-events-none absolute -bottom-10 -right-10 h-64 w-64 rounded-full blur-[80px] opacity-0 transition-opacity duration-700 group-hover:opacity-20"
+            className="pointer-events-none absolute -bottom-6 -right-6 h-32 w-32 rounded-full blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-30"
             style={{ background: project.accent }}
           />
         </div>
       </div>
 
       {/* Content */}
-      <motion.div 
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true }}
-        transition={{ staggerChildren: 0.1, delayChildren: 0.2 }}
-        className="flex flex-col gap-5 md:flex-1"
-      >
-        <motion.div variants={contentVariants} className="flex items-center gap-4">
+      <div className="flex flex-col gap-4 md:flex-1">
+        <div className="flex items-center gap-3">
           <span
-            className="font-mono text-[12px] font-black tracking-[0.3em] uppercase"
+            className="font-mono text-[11px] font-bold tracking-[0.2em] uppercase"
             style={{ color: project.accent }}
           >
             {project.index}
           </span>
           <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
-          <span className="font-mono text-[12px] text-slate-400 dark:text-slate-500 tracking-widest uppercase">
+          <span className="font-mono text-[11px] text-slate-400 dark:text-slate-500 tracking-widest uppercase">
             {project.date}
           </span>
-        </motion.div>
+        </div>
 
-        <motion.h3 variants={contentVariants} className="text-4xl font-black leading-tight tracking-tight text-slate-950 dark:text-white lg:text-5xl">
+        <h3 className="text-3xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white">
           {project.name}
-        </motion.h3>
+        </h3>
 
-        <motion.p variants={contentVariants} className="text-lg leading-relaxed text-slate-600 dark:text-slate-400 font-medium">
+        <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
           {project.description}
-        </motion.p>
+        </p>
 
-        <motion.div variants={contentVariants} className="flex flex-wrap gap-3 mt-2">
+        <div className="flex flex-wrap gap-2 mt-1">
           {project.tools.map((tool) => (
             <span
               key={tool}
-              className="rounded-full border border-slate-200 bg-white/50 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-slate-500 transition-all hover:border-slate-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-400 dark:hover:border-white/20"
+              className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-400"
             >
               {tool}
             </span>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div variants={contentVariants} className="mt-4">
-          <Link
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group/link inline-flex items-center gap-3 text-sm font-black uppercase tracking-widest transition-all"
-            style={{ color: project.accent }}
-          >
-            <span className="relative">
-              Case Study
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-current transition-all duration-300 group-hover/link:w-full" />
-            </span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
-          </Link>
-        </motion.div>
-      </motion.div>
+        <Link
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group/link mt-2 inline-flex w-fit items-center gap-2 text-sm font-semibold transition-colors"
+          style={{ color: project.accent }}
+        >
+          <span className="underline underline-offset-4 decoration-dotted group-hover/link:decoration-solid">
+            View Project
+          </span>
+          <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+        </Link>
+      </div>
     </motion.div>
   );
 }
